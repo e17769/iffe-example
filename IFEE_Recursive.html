@@ -5,14 +5,19 @@
   var tryNumber = 1;
   //recursive function that calls itself every second
   function Run() {
-
-    var url = 'https://jsonplaceholder.typicode.com/posts/42';
-    $.get(url, function (data, status) {});
-
-    this.message = url;
+    var i = this.tryNumber++;
     $(document.body).empty();
-    $(document.body).append(this.message + "(" + this.tryNumber++ + ")<br>");
-    window.setTimeout(Run, 10000);
+    var urls = [
+      'https://jsonplaceholder.typicode.com/posts/42',
+      'https://jsonplaceholder.typicode.com/posts/42',
+      'https://jsonplaceholder.typicode.com/posts/42'
+    ];
+    urls.forEach(function (index) {
+
+      $.get(index, function (data, status) {});
+      $(document.body).append(index + "(" + i + ")<br>");
+    });
+    window.setTimeout(Run, 5000);
   };
 
 
