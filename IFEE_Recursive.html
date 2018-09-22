@@ -1,26 +1,37 @@
 <html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script text="text/javascript">
+  var message;
+  var tryNumber = 1;
+  //recursive function that calls itself every second
+  function Run() {
+    var i = this.tryNumber++;
+    $(document.body).empty();
+    var urls = [
+      'https://jsonplaceholder.typicode.com/posts/42',
+      'https://jsonplaceholder.typicode.com/posts/42',
+      'https://jsonplaceholder.typicode.com/posts/42'
+    ];
+    urls.forEach(function (index) {
 
-var message;
-var tryNumber=1;
-//recursive function that calls itself every second
-function showMessage(){
-  document.write(this.message+ "(" + this.tryNumber++ + ")<br>");
-  window.setTimeout(showMessage, 1000);
-};
+      $.get(index, function (data, status) {});
+      $(document.body).append(index + "(" + i + ")<br>");
+    });
+    window.setTimeout(Run, 5000);
+  };
 
 
-/*IFFE FUNCTION
-This function is going to
-self execute as soon as the page
-loads.  It will call the showMessage() 
-function.
-*/
+  /*IFFE FUNCTION
+  This function is going to
+  self execute as soon as the page
+  loads.  It will call the Run() 
+  function.
+  */
 
-(function(msg){
-  this.message = msg  ;
-  showMessage();
-  
-})("Try number");
+  (function (msg) {
+    this.message = msg;
+    Run();
+  })("Attempt");
 </script>
+
 </html>
