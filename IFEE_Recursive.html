@@ -2,23 +2,26 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script text="text/javascript">
   var message;
+
   var tryNumber = 1;
   var urls = [
     'http://5bbd4dde8be32700139e33ff.mockapi.io/api/stock/ONCS/',
     'http://5bbd4dde8be32700139e33ff.mockapi.io/api/stock/GADIR/',
     'http://5bbd4dde8be32700139e33ff.mockapi.io/api/stock/DOM/'
   ];
+
   //recursive function that calls itself every second
   function Run() {
     var i = this.tryNumber++;
     $(document.body).empty();
 
     urls.forEach(function (index) {
-
+     
       $.get(index, function (data, status) {});
       $(document.body).append(index + "(" + i + ")<br>");
+      console.log(i);
     });
-    window.setTimeout(Run, 5000);
+    window.setTimeout(Run, 3000);
   };
 
 
